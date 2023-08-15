@@ -1,14 +1,24 @@
 import {createElement} from '../render.js';
+import {POINT_TYPES, CITIES} from '../constants.js';
+import {getRandomArrayElement} from '../utils.js';
+
+
+console.log(getRandomArrayElement(CITIES));
 
 function createNewTaskRoadListTemplate () {
+
+  const pointTypes = getRandomArrayElement(POINT_TYPES);
+  const cities = getRandomArrayElement(CITIES);
+
+
   return `
     <li class="trip-events__item">
     <div class="event">
       <time class="event__date" datetime="2019-03-18">MAR 18</time>
       <div class="event__type">
-        <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
+        <img class="event__type-icon" width="42" height="42" src="img/icons/${pointTypes}.png" alt="Event type icon">
       </div>
-      <h3 class="event__title">Taxi Amsterdam</h3>
+      <h3 class="event__title">${pointTypes} ${cities}</h3>
       <div class="event__schedule">
         <p class="event__time">
           <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
@@ -44,7 +54,7 @@ function createNewTaskRoadListTemplate () {
 
 export default class NewTaskListRoadView {
   getTemplate() {
-    return createNewTaskRoadListTemplate ();
+    return createNewTaskRoadListTemplate();
   }
 
   getElement() {

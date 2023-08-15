@@ -36,7 +36,7 @@ function createNewTaskFilterTimeTemplate () {
 
 export default class NewTaskFilterTimeView {
   getTemplate() {
-    return createNewTaskFilterTimeTemplate ();
+    return createNewTaskFilterTimeTemplate();
   }
 
   getElement() {

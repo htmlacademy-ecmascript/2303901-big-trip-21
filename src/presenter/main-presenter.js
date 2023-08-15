@@ -4,7 +4,7 @@ import NewTaskFormEditEventView from '../view/new-task-trip-events-item.js';
 import NewTaskListRoadView from '../view/new-task-trip-road-view.js';
 import { render } from '../render.js';
 
-const COUNT_ROADS = 3;
+const COUNT_ROADS = 10;
 
 export default class TripEventsPresenter {
   tripSortComponent = new NewTaskFormSortFilterView();
@@ -17,7 +17,7 @@ export default class TripEventsPresenter {
   init() {
     render(this.tripSortComponent, this.tripEventsContainer);
     render(this.tripEventsComponent, this.tripEventsContainer);
-    render(new NewTaskFormEditEventView (),this.tripEventsComponent.getElement());
+    render(new NewTaskFormEditEventView,this.tripEventsComponent.getElement());
 
     for (let i = 0; i < COUNT_ROADS; i++) {
       render(new NewTaskListRoadView, this.tripEventsComponent.getElement());
