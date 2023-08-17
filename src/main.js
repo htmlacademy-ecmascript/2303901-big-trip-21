@@ -9,12 +9,10 @@ const placeFilerHeader = siteBodyElement.querySelector('.trip-controls__filters'
 const headerMainPresenter = new HeaderMainPresenter({tripInfoContainer: siteTripInfo, tripFilterContainer: placeFilerHeader});
 const siteMainElement = document.querySelector('.page-main');
 const placeEventsMain = siteMainElement.querySelector('.trip-events');
-const pointsModel = new PointsModel();
-const mainEventsPresenter = new TripEventsPresenter({tripEventsContainer: placeEventsMain, pointsModel });
-
-
+const pointsModel = new PointsModel;
+const mainEventsPresenter = new TripEventsPresenter(placeEventsMain, pointsModel);
 
 headerMainPresenter.init();
 mainEventsPresenter.init();
 
-console.log(pointsModel.getPoints());
+//console.log(pointsModel.getPoints());

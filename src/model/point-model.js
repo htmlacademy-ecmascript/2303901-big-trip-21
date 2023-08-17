@@ -1,7 +1,11 @@
 import pointsMocks from '../mock/point-mock.js';
 
+console.log(pointsMocks)
 export default class PointsModel {
-  points = pointsMocks;
+
+  constructor() {
+    this.points = pointsMocks;
+  }
 
   getPoints() {
 
