@@ -1,4 +1,5 @@
 import {createElement} from '../render.js';
+  console.log('valuesPoints');
 
 function createNewTaskRoadListTemplate (points) {
 
@@ -6,7 +7,7 @@ function createNewTaskRoadListTemplate (points) {
   //pointsMocks();
   const isFavorite = (valuesPoints.isFavorite) ? 'event__favorite-btn--active' : '';
 
-  console.log(valuesPoints);
+  //console.log(valuesPoints);
 
   return `
     <li class="trip-events__item">
@@ -15,7 +16,7 @@ function createNewTaskRoadListTemplate (points) {
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${valuesPoints.type}.png" alt="Event type icon">
       </div>
-      <h3 class="event__title">${valuesPoints.type} ${valuesPoints.sity}</h3>
+      <h3 class="event__title">${valuesPoints.type} ${valuesPoints.city}</h3>
       <div class="event__schedule">
         <p class="event__time">
           <time class="event__start-time" datetime="2019-03-18T10:30">${valuesPoints.descriptionTime.timeStart}</time>

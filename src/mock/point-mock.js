@@ -22,12 +22,8 @@ export default class PointMock {
 
 function pointsMocks () {
   const array = [];
-
-  for (let i = 0; i < POINTS_COUNT; i++) {
-    const pointMock = new PointMock;
-    array.push(pointMock);
-  }
-
+  const pointMock = new PointMock;
+  array.push(pointMock);
   return array;
 }
 

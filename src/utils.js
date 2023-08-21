@@ -1,5 +1,3 @@
-
-
 // eslint-disable-next-line no-undef
 const dayjs = require('dayjs');
 const maxHour = 23;
@@ -45,8 +43,8 @@ function getDescriptionDate(date1, date2) {
   if (diffInMinutes === 0) {
     return {
       monthAndDay: getMonthAndDayInEnglish(date1),
-      timeStart: getTime(date1),
-      timeEnd: getTime(date2),
+      timeStart: date1.format('HH:mm'),
+      timeEnd: date2.format('HH:mm'),
       timeDifference: '0M'
     };
   }
@@ -74,18 +72,14 @@ function getDescriptionDate(date1, date2) {
 
   return {
     monthAndDay: getMonthAndDayInEnglish(date1),
-    timeStart: getTime(date1),
-    timeEnd: getTime(date2),
+    timeStart: date1.format('HH:mm'),
+    timeEnd: date2.format('HH:mm'),
     timeDifference
   };
 }
 
 function getMonthAndDayInEnglish(date) {
   return date.format('MMM DD').toUpperCase();
-}
-
-function getTime(startDates) {
-  return startDates.format('HH:mm');
 }
 
 function generateAndPrintRandomDescription() {
@@ -96,3 +90,4 @@ function generateAndPrintRandomDescription() {
 }
 
 export { getRandomArrayElement, getRandomInteger, generateRandomDate, generateAndPrintRandomDescription };
+
