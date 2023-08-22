@@ -1,19 +1,36 @@
-import HeaderMainPresenter from './presenter/header-presenter.js';
-import TripEventsPresenter from './presenter/main-presenter.js';
-import PointsModel from './model/point-model.js';
-import DestinationModel from './model/destination-model.js';
+import './views/brief-view.js';
+import './views/filter-view.js';
+import './views/add-button-view.js';
+import './views/sort-view.js';
+import './views/list-view.js';
 
-const siteBodyElement = document.querySelector('.page-header');
-const siteTripInfo = siteBodyElement.querySelector('.trip-main');
-const placeFilerHeader = siteBodyElement.querySelector('.trip-controls__filters');
-const headerMainPresenter = new HeaderMainPresenter({tripInfoContainer: siteTripInfo, tripFilterContainer: placeFilerHeader});
-const siteMainElement = document.querySelector('.page-main');
-const placeEventsMain = siteMainElement.querySelector('.trip-events');
-const pointsModel = new PointsModel;
-const mainEventsPresenter = new TripEventsPresenter(placeEventsMain, pointsModel);
+/**
+ * @type {import('./views/brief-view.js').default}
+ */
+const briefView = document.querySelector('brief-view');
 
+/**
+ * @type {import('./views/filter-view.js').default}
+ */
+const filterView = document.querySelector('filter-view');
 
-headerMainPresenter.init();
-mainEventsPresenter.init();
+/**
+ * @type {import('./views/add-button-view.js').default}
+ */
+const addButtonView = document.querySelector('add-button-view');
 
-//console.log(pointsModel.getPoints());
+/**
+ * @type {import('./views/sort-view.js').default}
+ */
+const sortView = document.querySelector('sort-view');
+
+/**
+ * @type {import('./views/list-view.js').default}
+ */
+const listView = document.querySelector('list-view');
+
+briefView.render();
+filterView.render();
+addButtonView.render();
+sortView.render();
+listView.render();

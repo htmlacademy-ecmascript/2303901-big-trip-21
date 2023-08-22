@@ -1,5 +1,5 @@
-import NewTaskFilterTimeView from '../view/new-task-filter-time-view.js';
-import NewTaskHeaderTravelView from '../view/new-tack-header-cost-trip-view.js';
+import NewTaskFilterTimeView from '../views/new-task-filter-time-view.js';
+import NewTaskHeaderTravelView from '../views/new-tack-header-cost-trip-view.js';
 import {RenderPosition} from '../render.js';
 import {render} from '../render.js';
 

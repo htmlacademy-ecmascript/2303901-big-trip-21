@@ -1,7 +1,7 @@
-import NewTaskFormSortFilterView from '../view/new-task-trip-sort-view.js';
-import NewTaskFormEventView from '../view/new-task-trip-events-list-view.js';
-import NewTaskFormEditEventView from '../view/new-task-trip-events-item.js';
-import NewTaskListRoadView from '../view/new-task-trip-road-view.js';
+import NewTaskFormSortFilterView from '../views/new-task-trip-sort-view.js';
+import NewTaskFormEventView from '../views/new-task-trip-events-list-view.js';
+import NewTaskFormEditEventView from '../views/new-task-trip-events-item.js';
+import NewTaskListRoadView from '../views/new-task-trip-road-view.js';
 import {render} from '../render.js';
 
 const COUNT_ROADS = 10;
