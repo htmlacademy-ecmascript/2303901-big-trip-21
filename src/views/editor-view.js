@@ -1,5 +1,6 @@
 import View from './view.js';
 import {html} from '../utilities.js';
+import './editor-view.css';
 
 /**
  * @typedef {import('./list-view.js').ItemState} State
