@@ -51,12 +51,12 @@ class ListPresenter extends Presenter {
         })),
 
         isFavorite: point.isFavorite,
-        isEditable: index === 1
+        isEditable: index === 0
       };
 
     });
 
-    console.table(items)
+    //console.table(items);
 
     this.view.setState({items});
   }
