@@ -1,3 +1,16 @@
+import dayjs from 'dayjs';
+
+/**
+ * @param {dayjs.ConfigType} value
+ * @returns {string}
+ */
+function formatDate(value) {
+  const month = dayjs(value).format('MMM D');
+
+  return month;
+}
+console.log(formatDate('2023-10-25T23:12:46.219Z'));
+
 /**
  * @param {TemplateStringsArray} strings
  * @param {...any} values
@@ -19,4 +32,4 @@ function html(strings, ...values) {
   });
 }
 
-export {html};
+export {html, formatDate};
