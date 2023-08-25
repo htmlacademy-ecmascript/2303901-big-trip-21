@@ -1,13 +1,27 @@
-import HeaderMainPresenter from './presenter/header-presenter.js';
-import TripEventsPresenter from './presenter/main-presenter.js';
+import './views/brief-view.js';
+import './views/filter-view.js';
+import './views/add-button-view.js';
+import './views/sort-view.js';
+import './views/list-view.js';
 
-const siteBodyElement = document.querySelector('.page-header');
-const siteTripInfo = siteBodyElement.querySelector('.trip-main');
-const placeFilerHeader = siteBodyElement.querySelector('.trip-controls__filters');
-const headerMainPresenter = new HeaderMainPresenter({tripInfoContainer: siteTripInfo, tripFilterContainer: placeFilerHeader});
-const siteMainElement = document.querySelector('.page-main');
-const placeEventsMain = siteMainElement.querySelector('.trip-events');
-const mainEventsPresenter = new TripEventsPresenter({tripEventsContainer: placeEventsMain});
+import AppModel from './models/app-model.js';
 
-headerMainPresenter.init();
-mainEventsPresenter.init();
+import BriefPresenter from './presenters/brief-presenter.js';
+import FilterPresenter from './presenters/filter-presenter.js';
+import AddButtonPresenter from './presenters/add-button-presenter.js';
+import SortPresenter from './presenters/sort-presenter.js';
+import ListPresenter from './presenters/list-presenter.js';
+
+
+const appModel = new AppModel();
+
+appModel.ready().then(() => {
+
+  new BriefPresenter(document.querySelector('brief-view'), appModel);
+  new FilterPresenter(document.querySelector('filter-view'), appModel);
+  new AddButtonPresenter(document.querySelector('add-button-view'), appModel);
+  new SortPresenter(document.querySelector('sort-view'), appModel);
+  new ListPresenter(document.querySelector('list-view'), appModel);
+
+});
+
