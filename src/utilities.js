@@ -1,4 +1,7 @@
 import dayjs from 'dayjs';
+import durationPlugin from 'dayjs/plugin/duration.js';
+
+dayjs.extend(durationPlugin);
 
 /**
  * @param {dayjs.ConfigType} value
@@ -7,7 +10,6 @@ import dayjs from 'dayjs';
 function formatDate(value) {
   return dayjs(value).format('MMM D');
 }
-console.log(formatDate('2023-10-25T23:12:46.219Z'));
 
 /**
  * @param {dayjs.ConfigType} value
@@ -16,7 +18,28 @@ console.log(formatDate('2023-10-25T23:12:46.219Z'));
 function formatTime(value) {
   return dayjs(value).format('HH:mm');
 }
-console.log(formatTime('2023-10-25T23:12:46.219Z'));
+
+/**
+ * @param {dayjs.ConfigType} valueFrom
+ * @param {dayjs.ConfigType} valueTo
+ * @returns {string}
+ */
+function formatDuration (valueFrom, valueTo) {
+  const ms = dayjs(valueTo).diff(valueFrom);
+  const duration = dayjs.duration(ms, 'ms');
+
+  if(duration.days()) {
+
+    return duration.format('D[d] HH[h] mm[m]');
+  }
+
+  if(duration.hours()) {
+
+    return duration.format('HH[h] mm[m]');
+  }
+
+  return duration.format('mm[m]');
+}
 
 /**
  * @param {TemplateStringsArray} strings
@@ -42,5 +65,6 @@ function html(strings, ...values) {
 export {
   formatDate,
   formatTime,
+  formatDuration,
   html,
 };
