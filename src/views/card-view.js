@@ -1,5 +1,5 @@
 import View from './view.js';
-import {html} from '../utilities.js';
+import {formatDate, formatTime, formatDuration, formatNumber, html} from '../utilities.js';
 
 /**
  * @typedef {import('./list-view.js').ItemState} State
@@ -40,7 +40,7 @@ class CardView extends View {
     const {dateFrom} = this.state;
 
     return html`
-      <time class="event__date" datetime="${dateFrom}">${dateFrom}</time>
+      <time class="event__date" datetime="${dateFrom}">${formatDate(dateFrom)}</time>
     `;
   }
 
@@ -83,11 +83,11 @@ class CardView extends View {
     return html`
       <div class="event__schedule">
       <p class="event__time">
-        <time class="event__start-time" datetime="${dateFrom}">${dateFrom}</time>
+        <time class="event__start-time" datetime="${dateFrom}">${formatTime(dateFrom)}</time>
           —
-        <time class="event__end-time" datetime="${dateTo}">${dateTo}</time>
+        <time class="event__end-time" datetime="${dateTo}">${formatTime(dateTo)}</time>
       </p>
-      <p class="event__duration">01H 10M</p>
+      <p class="event__duration">${formatDuration(dateFrom, dateTo)}</p>
     </div>
     `;
   }
@@ -97,10 +97,9 @@ class CardView extends View {
    */
   createPriceHtml() {
     const {basePrice} = this.state;
+
     return html`
-      <p class="event__price">
-         €&nbsp;<span class="event__price-value">${basePrice}</span>
-      </p>
+      <p class="event__price">€&nbsp;<span class="event__price-value">${formatNumber(basePrice)}</span></p>
     `;
   }
 
@@ -136,7 +135,7 @@ class CardView extends View {
     const {isFavorite} = this.state;
 
     return html`
-      <button class="event__favorite-btn ${(isFavorite) ? 'event__favorite-btn--active' : ''}" type="button">
+      <button class="event__favorite-btn${(isFavorite) ? ' event__favorite-btn--active' : ''}" type="button">
         <span class="visually-hidden">Add to favorite</span>
         <svg class="event__favorite-icon" width="28" height="28" viewBox="0 0 28 28">
           <path d="M14 21l-8.22899 4.3262 1.57159-9.1631L.685209 9.67376 9.8855 8.33688 14 0l4.1145 8.33688 9.2003 1.33688-6.6574 6.48934 1.5716 9.1631L14 21z"></path>
