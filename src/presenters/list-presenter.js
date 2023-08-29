@@ -55,7 +55,6 @@ class ListPresenter extends Presenter {
         isFavorite: point.isFavorite,
         isEditable: params.edit === point.id
       };
-
     });
 
     this.view.setState({items});
