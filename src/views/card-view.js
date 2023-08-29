@@ -164,7 +164,6 @@ class CardView extends View {
     if(event.target.closest('.event__rollup-btn')) {
       this.dispatch('open');
     }
-
   }
 }
 
