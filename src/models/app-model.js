@@ -26,7 +26,6 @@ class AppModel extends Model {
   /**
   * @returns {Promise<void>}
   */
-
   async ready() {
     //TODO: предстоит получать данные с сервера
     // @ts-ignore
@@ -50,6 +49,18 @@ class AppModel extends Model {
    */
   createPoint(data = Object.create(null)) {
     return new PointModel(data);
+  }
+
+  /**
+   * @param {PointModel } model
+   * @returns {Promise<void>}
+   */
+  async updatePoint(model) {
+    //TODO нужно обновить данные на сервере
+    const data = model.toJSON();
+    const index = this.points.findIndex((point) => point.id === data.id);
+
+    this.points.splice(index, 1, data);
   }
 
   /**
