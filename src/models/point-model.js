@@ -1,4 +1,4 @@
-import Model from './model';
+import Model from './model.js';
 
 class PointModel extends Model {
   /**
@@ -18,7 +18,28 @@ class PointModel extends Model {
   }
 
   /**
-   *@returns{Point}
+   * @type {number}
+   */
+  get dateFromInMs() {
+    return Date.parse(this.dateFrom);
+  }
+
+  /**
+   * @type {number}
+   */
+  get dateToInMs() {
+    return Date.parse(this.dateTo);
+  }
+
+  /**
+   * @type {number}
+   */
+  get durationInMs() {
+    return this.dateToInMs - this.dateFromInMs;
+  }
+
+  /**
+   * @returns {Point}
    */
   toJSON() {
     return {
