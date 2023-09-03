@@ -23,7 +23,7 @@ class ListPresenter extends Presenter {
    */
   updateView() {
     const params = this.navigation.getParams();
-    const points = this.model.getPoints();
+    const points = this.model.getPoints(params);
     const destinations = this.model.getDestinations();
     const offerGroups = this.model.getOfferGroups();
 
@@ -63,7 +63,7 @@ class ListPresenter extends Presenter {
 
   /**
    * @param {import('../views/list-view').ItemState} state
-   * @returns {import('../models/point-model').default} state
+   * @returns {import('../models/point-model').default}
    */
   createPoint(state) {
     const point = this.model.createPoint();
