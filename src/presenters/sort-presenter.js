@@ -46,7 +46,7 @@ class SortPresenter extends Presenter {
     const params = this.navigation.getParams();
 
     params.sort = event.target.value;
-    //delete params.edit;
+    delete params.edit;
 
     this.navigation.setParams(params);
   }
