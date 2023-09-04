@@ -12,6 +12,7 @@ class EditorView extends View {
     super();
 
     this.addEventListener('click', this.onClick);
+    this.addEventListener('change', this.onChange);
   }
 
   connectedCallback () {
@@ -270,9 +271,9 @@ class EditorView extends View {
 
   /**
    * @param {PointerEvent & {
-  *  target: Element
-  * }} event
-  */
+   *  target: Element
+   * }} event
+   */
   onClick(event) {
     if(event.target.closest('.event__rollup-btn')) {
       this.dispatch('close');
@@ -282,11 +283,20 @@ class EditorView extends View {
   /**
    * @param {KeyboardEvent} event
    */
-  handleEvent (event) {
+  handleEvent(event) {
 
     if(event.key?.startsWith('Esc')) {
       this.dispatch('close');
     }
+  }
+
+  /**
+   * @param {Event & {
+   *  target: HTMLInputElement
+   * }} event
+   */
+  onChange(event) {
+    this.dispatch('edit', event.target);
   }
 }
 
