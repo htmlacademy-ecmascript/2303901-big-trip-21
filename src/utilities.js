@@ -8,7 +8,7 @@ dayjs.extend(durationPlugin);
 /**
  * @param {HTMLInputElement} inputFrom
  * @param {HTMLInputElement} inputTo
- * @returns{Function}
+ * @returns {Function}
  */
 function createCalendars (inputFrom, inputTo) {
   const calendarFrom = flatpickr(inputFrom, {});

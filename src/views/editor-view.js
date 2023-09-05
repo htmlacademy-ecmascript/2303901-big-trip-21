@@ -1,6 +1,6 @@
-import View from './view.js';
-import {html} from '../utilities.js';
 import './editor-view.css';
+import View from './view.js';
+import {html, createCalendars} from '../utilities.js';
 
 /**
  * @typedef {import('./list-view.js').ItemState} State
@@ -21,6 +21,16 @@ class EditorView extends View {
 
   disconnectedCallback () {
     document.removeEventListener('keydown', this);
+  }
+
+  /**
+   * @override
+   */
+  render() {
+    super.render();
+
+    // @ts-ignore
+    createCalendars(...this.querySelectorAll('.event__input--time'));
   }
 
   /**
