@@ -28,9 +28,9 @@ class AppModel extends Model {
      */
     this.filterCallbacks = {
       everything: () => true,
-      future :() => true,
-      present:() => true,
-      past: () => true
+      future: (point) => point.dateFromInMs > Date.now(),
+      present: (point) => point.dateFromInMs <= Date.now() && point.dateToInMs >= Date.now(),
+      past: (point) => point.dateToInMs < Date.now()
     };
 
     /**
@@ -69,8 +69,9 @@ class AppModel extends Model {
     const defaultFilter = this.filterCallbacks.everything;
     const defaultSort = this.sortCallbacks.day;
 
-    const filter = this.sortCallbacks[options.filter] ?? defaultFilter;
+    const filter = this.filterCallbacks[options.filter] ?? defaultFilter;
     const sort = this.sortCallbacks[options.sort] ?? defaultSort;
+
 
     return this.points.map(this.createPoint).filter(filter).sort(sort);
   }
