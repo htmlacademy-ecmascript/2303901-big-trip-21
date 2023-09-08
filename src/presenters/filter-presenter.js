@@ -24,10 +24,10 @@ class FilterPresenter extends Presenter {
      *@type {Array<FilterType>}
      */
     const values = ['everything', 'future', 'present', 'past'];
-
+    const {filter = 'everything'} = this.navigation.getParams();
     const items = values.map((value) => ({
       value,
-      isSelected: value === 'everything',
+      isSelected: value === filter,
       isDisabled: value === 'past'
     }));
 
