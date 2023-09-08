@@ -21,6 +21,6 @@ appModel.ready().then(() => {
   new AddButtonPresenter(document.querySelector('add-button-view'), appModel);
   new SortPresenter(document.querySelector('sort-view'), appModel);
   new ListPresenter(document.querySelector('list-view'), appModel);
-
 });
+
 
