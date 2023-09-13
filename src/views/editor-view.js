@@ -18,6 +18,8 @@ class EditorView extends View {
 
     this.addEventListener('click', this.onClick);
     this.addEventListener('change', this.onChange);
+    this.addEventListener('submit', this.onSubmit);
+    this.addEventListener('reset', this.onReset);
   }
 
   connectedCallback () {
@@ -181,7 +183,8 @@ class EditorView extends View {
       <input
       class="event__input  event__input--price"
       id="event-price-1"
-      type="text"
+      type="number"
+      min="0"
       name="event-price"
       value="${basePrice}">
     </div>
@@ -201,8 +204,16 @@ class EditorView extends View {
    * @returns {string}
    */
   createResetButtonHtml() {
-    return html`
+    const {id} = this.state;
+
+    if(id === 'draft') {
+      return html`
       <button class="event__reset-btn" type="reset">Cancel</button>
+    `;
+    }
+
+    return html`
+      <button class="event__reset-btn" type="reset">Delete</button>
     `;
   }
 
@@ -210,11 +221,16 @@ class EditorView extends View {
    * @returns {string}
    */
   createCloseButtonHtml() {
+    const {id} = this.state;
+
+    if(id === 'draft') {
+      return '';
+    }
     return html`
-    <button class="event__rollup-btn" type="button">
-      <span class="visually-hidden">Close event</span>
-    </button>
-    `;
+      <button class="event__rollup-btn" type="button">
+        <span class="visually-hidden">Close event</span>
+      </button>
+      `;
   }
 
   /**
@@ -264,7 +280,7 @@ class EditorView extends View {
     const {destinations} = this.state;
     const selectedDestination = destinations.find((destination) => destination.isSelected);
 
-    if(!selectedDestination) {
+    if(!selectedDestination || !selectedDestination.description) {
       return '';
     }
 
@@ -314,6 +330,25 @@ class EditorView extends View {
    */
   onChange(event) {
     this.dispatch('edit', event.target);
+  }
+
+  /**
+   * @param {SubmitEvent} event
+   */
+  onSubmit(event) {
+    event.preventDefault();
+    this.dispatch('save');
+  }
+
+  /**
+   * @param {Event} event
+   */
+  onReset(event) {
+    const {id} = this.state;
+
+    event.preventDefault();
+
+    this.dispatch(id === 'draft' ? 'close' : 'delete');
   }
 }
 
