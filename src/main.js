@@ -16,11 +16,7 @@ import ListPresenter from './presenters/list-presenter.js';
 import PlaceholderPresenter from './presenters/placeholder-presenter.js';
 
 const apiService = new ApiService({authorization: 'Basic gfnyjtyjugygjkuyk'});
-apiService.getPoints();
-apiService.getDestinations();
-apiService.getOfferGroups();
-
-const appModel = new AppModel();
+const appModel = new AppModel(apiService);
 
 appModel.ready().then(() => {
 
