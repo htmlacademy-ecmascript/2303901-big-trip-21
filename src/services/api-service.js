@@ -62,6 +62,16 @@ class ApiService extends Service {
   }
 
   /**
+   * @param {string} id
+   * @returns {Promise<void>}
+   */
+  async deletePoint(id) {
+    await this.request(`points/${id}`, {
+      method: 'delete'
+    });
+  }
+
+  /**
    * @returns {Promise<Array<OfferGroup>>}
    */
   async getOfferGroups() {
