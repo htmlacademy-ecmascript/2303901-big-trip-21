@@ -211,16 +211,22 @@ class EditorView extends View {
    * @returns {string}
    */
   createResetButtonHtml() {
-    const {id} = this.state;
+    const {id, isDeleting} = this.state;
 
     if(id === 'draft') {
       return html`
-      <button class="event__reset-btn" type="reset">Cancel</button>
+      <button
+      class="event__reset-btn" type="reset">Cancel</button>
     `;
     }
 
     return html`
-      <button class="event__reset-btn" type="reset">Delete</button>
+      <button
+        class="event__reset-btn btn"
+        type="reset"
+        ${isDeleting ? 'disabled' : ''}>
+        ${isDeleting ? 'Deleting...' : 'Delete'}
+      </button>
     `;
   }
 
