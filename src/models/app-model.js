@@ -102,12 +102,16 @@ class AppModel extends Model {
    * @returns {Promise<void>}
    */
   async addPoint(model) {
-    // TODO: Добавить данные на сервере
-    const data = model.toJSON();
+    this.dispatch('busy');
 
-    data.id = crypto.randomUUID();
+    try {
+      const data = await this.apiService.addPoint(model.toJSON());
 
-    this.points.push(data);
+      this.points.push(data);
+
+    } finally {
+      this.dispatch('idle');
+    }
   }
 
   /**
@@ -115,11 +119,17 @@ class AppModel extends Model {
    * @returns {Promise<void>}
    */
   async updatePoint(model) {
-    // TODO: Обновить данные на сервере
-    const data = model.toJSON();
-    const index = this.points.findIndex((point) => point.id === data.id);
+    this.dispatch('busy');
 
-    this.points.splice(index, 1, data);
+    try {
+      const data = await this.apiService.updatePoint(model.toJSON());
+      const index = this.points.findIndex((point) => point.id === data.id);
+
+      this.points.splice(index, 1, data);
+
+    } finally {
+      this.dispatch('idle');
+    }
   }
 
   /**
@@ -127,10 +137,17 @@ class AppModel extends Model {
    * @returns {Promise<void>}
    */
   async deletePoint(id) {
-    // TODO: Удалить данные на сервере
-    const index = this.points.findIndex((point) => point.id === id);
+    this.dispatch('busy');
 
-    this.points.splice(index, 1);
+    try {
+      await this.apiService.deletePoint(id);
+      const index = this.points.findIndex((point) => point.id === id);
+
+      this.points.splice(index, 1);
+
+    } finally {
+      this.dispatch('idle');
+    }
   }
 
   /**
