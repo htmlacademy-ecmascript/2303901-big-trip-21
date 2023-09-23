@@ -25,10 +25,11 @@ class FilterPresenter extends Presenter {
      */
     const values = ['everything', 'future', 'present', 'past'];
     const {filter = 'everything'} = this.navigation.getParams();
+
     const items = values.map((value) => ({
       value,
       isSelected: value === filter,
-      isDisabled: false
+      isDisabled: !this.model.getPoints({filter: value}).length
     }));
 
     this.view.setState({items});
