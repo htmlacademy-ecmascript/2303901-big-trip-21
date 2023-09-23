@@ -50,7 +50,7 @@ class ListView extends View {
     const views = this.state.items.map((item) => {
       const view = item.isEditable ? new EditorView() : new CardView();
 
-      view.classList.add('trip-list__item');
+      view.classList.add('trip-events__item');
       view.setAttribute('role', 'listitem');
       view.setState(item);
 
