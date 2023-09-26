@@ -37,7 +37,6 @@ class EditorView extends View {
   render() {
     this.destroyCalendars?.();
     super.render();
-
     // @ts-ignore
     this.destroyCalendars = createCalendars(...this.querySelectorAll('.event__input--time'));
   }
@@ -83,30 +82,31 @@ class EditorView extends View {
             src="img/icons/${types.find((type) => type.isSelected).value}.png"
             alt="Event type icon">
         </label>
-      <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
-      <div class="event__type-list">
-        <fieldset class="event__type-group">
-          <legend class="visually-hidden">Event type</legend>
+        <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
 
-          ${types.map((type) => html`
-            <div class="event__type-item">
-              <input
-                id="event-type-${type.value}-1"
-                class="event__type-input  visually-hidden"
-                type="radio"
-                name="event-type"
-                value="${type.value}"
-                ${type.isSelected ? 'checked' : ''}>
-              <label
-                class="event__type-label  event__type-label--${type.value}"
-                for="event-type-${type.value}-1">
-                ${type.value}
-              </label>
-            </div>
-          `)}
-        </fieldset>
+        <div class="event__type-list">
+          <fieldset class="event__type-group">
+            <legend class="visually-hidden">Event type</legend>
+
+            ${types.map((type) => html`
+              <div class="event__type-item">
+                <input
+                  id="event-type-${type.value}-1"
+                  class="event__type-input  visually-hidden"
+                  type="radio"
+                  name="event-type"
+                  value="${type.value}"
+                  ${type.isSelected ? 'checked' : ''}>
+                <label
+                  class="event__type-label  event__type-label--${type.value}"
+                  for="event-type-${type.value}-1">
+                  ${type.value}
+                </label>
+              </div>
+            `)}
+          </fieldset>
+        </div>
       </div>
-    </div>
     `;
   }
 

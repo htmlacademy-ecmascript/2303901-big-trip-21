@@ -1,10 +1,10 @@
 /**
  * @typedef {{
-*  filter?: FilterType
-*  sort?: SortType
-*  edit?: string
-* }} Params
-*/
+ *  filter?: FilterType
+ *  sort?: SortType
+ *  edit?: string
+ * }} Params
+ */
 class Navigation extends EventTarget {
   constructor() {
     super();
@@ -15,8 +15,8 @@ class Navigation extends EventTarget {
   }
 
   /**
-  * @param {Params} params
-  */
+   * @param {Params} params
+   */
   setParams(params) {
     const url = this.getUrl();
 
@@ -31,8 +31,8 @@ class Navigation extends EventTarget {
   }
 
   /**
-  * @returns {Params}
-  */
+   * @returns {Params}
+   */
   getParams() {
     const url = this.getUrl();
 
@@ -47,8 +47,8 @@ class Navigation extends EventTarget {
   }
 
   /**
-  * @returns {URL}
-  */
+   * @returns {URL}
+   */
   getUrl() {
     return new URL(window.location.href);
   }

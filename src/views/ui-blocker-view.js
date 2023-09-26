@@ -2,14 +2,14 @@ import './ui-blocker-view.css';
 import View from './view.js';
 
 /**
-*
-* @typedef {{
-  *  isActive: boolean
-  *  message: string
-  * }} State
-  *
-  * @extends {View<State>}
-  */
+ *
+ * @typedef {{
+ *  isActive: boolean
+ *  message: string
+ * }} State
+ *
+ * @extends {View<State>}
+ */
 class UiBlockerView extends View {
   constructor() {
     super();
@@ -22,7 +22,7 @@ class UiBlockerView extends View {
    */
   render() {
     const {isActive} = this.state;
-    if(isActive) {
+    if (isActive) {
       this.classList.add('ui-blocker--on');
       document.addEventListener('keydown', this);
     } else {

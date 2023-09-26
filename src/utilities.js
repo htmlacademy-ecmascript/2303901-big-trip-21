@@ -11,7 +11,7 @@ dayjs.extend(durationPlugin);
  * @param {HTMLInputElement} inputTo
  * @returns {Function}
  */
-function createCalendars (inputFrom, inputTo) {
+function createCalendars(inputFrom, inputTo) {
   /**
    * @type {import('flatpickr/dist/types/options').Options}
    */
@@ -45,7 +45,7 @@ function formatDateRange(valueFrom, valueTo) {
   valueFrom = dayjs(valueFrom);
   valueTo = dayjs(valueTo);
 
-  if(valueFrom.isSame(valueTo, 'day')) {
+  if (valueFrom.isSame(valueTo, 'day')) {
     return formatDate(valueFrom);
   }
 
@@ -82,12 +82,12 @@ function formatDuration (valueFrom, valueTo) {
   const ms = dayjs(valueTo).diff(valueFrom);
   const duration = dayjs.duration(ms, 'ms');
 
-  if(duration.days()) {
+  if (duration.days()) {
 
     return duration.format('D[d] HH[h] mm[m]');
   }
 
-  if(duration.hours()) {
+  if (duration.hours()) {
 
     return duration.format('HH[h] mm[m]');
   }
@@ -112,7 +112,7 @@ function formatNumber (value) {
 function formatList(items) {
   items = structuredClone(items);
 
-  if(items.length > 3) {
+  if (items.length > 3) {
     items.splice(1, items.length - 2, '...');
   }
   return items.join(' — ');
@@ -143,7 +143,7 @@ function html(strings, ...values) {
  * @param {any} data
  * @returns {any}
  */
-function sanitize (data) {
+function sanitize(data) {
   switch (data?.constructor) {
     case String:
       return escape(data);

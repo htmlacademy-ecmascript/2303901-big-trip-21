@@ -33,10 +33,10 @@ class PlaceholderPresenter extends Presenter {
     const params = this.navigation.getParams();
     const points = this.model.getPoints(params);
 
-    if(!points.length && params.edit !== 'draft') {
+    if (!points.length && params.edit !== 'draft') {
       /**
-      * @type {Record<FilterType, string>}
-      */
+       * @type {Record<FilterType, string>}
+       */
       const messages = {
         everything: 'Click New Event to create your first point',
         future: 'There are no future events now',

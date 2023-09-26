@@ -31,7 +31,6 @@ class AddButtonPresenter extends Presenter {
     this.navigation.setParams({
       edit: 'draft'
     });
-
   }
 }
 
