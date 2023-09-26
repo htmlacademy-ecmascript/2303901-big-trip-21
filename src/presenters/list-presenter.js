@@ -26,11 +26,12 @@ class ListPresenter extends Presenter {
    */
   updateView() {
     const params = this.navigation.getParams();
+    const previousParams = this.navigation.getPreviousParams();
     const points = this.model.getPoints(params);
     const destinations = this.model.getDestinations();
     const offerGroups = this.model.getOfferGroups();
 
-    if(params.edit === 'draft') {
+    if (params.edit === 'draft') {
       points.unshift(this.createDraftPoint());
     }
 
@@ -61,19 +62,23 @@ class ListPresenter extends Presenter {
         })),
 
         isFavorite: point.isFavorite,
-        isEditable: params.edit === point.id
+        isEditable: params.edit === point.id,
+        isAnimated: params.edit === point.id || previousParams.edit === point.id
       };
     });
 
-    this.view.setState({items});
+    this.view.setState({
+      items,
+      isAnimated: !('edit' in params) && !('edit' in previousParams)
+    });
   }
 
   /**
-
    * @returns {import('../models/point-model').default}
    */
   createDraftPoint() {
     const point = this.model.createPoint();
+
     Object.assign(point, {
       id: 'draft',
       type: 'flight',
@@ -134,7 +139,7 @@ class ListPresenter extends Presenter {
   async onViewFavorite(event) {
     const card = event.target;
 
-    try{
+    try {
       card.state.isFavorite = !card.state.isFavorite;
       await this.model.updatePoint(this.createPoint(card.state));
       card.render();
@@ -153,7 +158,7 @@ class ListPresenter extends Presenter {
     const editor = event.target;
     const input = event.detail;
 
-    if(input.name === 'event-type'){
+    if (input.name === 'event-type'){
       const offerGroups = this.model.getOfferGroups();
       const {offers} = offerGroups.find((group) => group.type === input.value);
 
@@ -170,30 +175,31 @@ class ListPresenter extends Presenter {
       return;
     }
 
-    if(input.name === 'event-destination') {
+    if (input.name === 'event-destination') {
       editor.state.destinations.forEach((destination) => {
         destination.isSelected = destination.name === input.value;
       });
+
       editor.render();
       return;
     }
 
-    if(input.name === 'event-start-time') {
+    if (input.name === 'event-start-time') {
       editor.state.dateFrom = input.value;
       return;
     }
 
-    if(input.name === 'event-end-time') {
+    if (input.name === 'event-end-time') {
       editor.state.dateTo = input.value;
       return;
     }
 
-    if(input.name === 'event-price') {
+    if (input.name === 'event-price') {
       editor.state.basePrice = Number(input.value);
       return;
     }
 
-    if(input.name === 'event-offer') {
+    if (input.name === 'event-offer') {
       editor.state.offers.some((offer) => {
         if(offer.id === input.value){
           offer.isSelected = !offer.isSelected;
@@ -215,7 +221,7 @@ class ListPresenter extends Presenter {
     try {
       editor.setState({isSaving: true});
 
-      if(editor.state.id === 'draft') {
+      if (editor.state.id === 'draft') {
         await this.model.addPoint(point);
       } else {
         await this.model.updatePoint(point);

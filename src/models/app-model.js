@@ -52,7 +52,7 @@ class AppModel extends Model {
    * @returns {Promise<void>}
    */
   async ready() {
-    try{
+    try {
       const [points, destinations, offerGroups] = await Promise.all([
         this.apiService.getPoints(),
         this.apiService.getDestinations(),
@@ -81,10 +81,8 @@ class AppModel extends Model {
   getPoints(options = {}) {
     const defaultFilter = this.filterCallbacks.everything;
     const defaultSort = this.sortCallbacks.day;
-
     const filter = this.filterCallbacks[options.filter] ?? defaultFilter;
     const sort = this.sortCallbacks[options.sort] ?? defaultSort;
-
 
     return this.points.map(this.createPoint).filter(filter).sort(sort);
   }

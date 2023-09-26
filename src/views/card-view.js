@@ -156,17 +156,17 @@ class CardView extends View {
   }
 
   /**
-  * @param {PointerEvent & {
-  *   target: Element
-  *  }} event
-  */
+   * @param {PointerEvent & {
+   *   target: Element
+   *  }} event
+   */
   onClick(event) {
-    if(event.target.closest('.event__rollup-btn')) {
+    if (event.target.closest('.event__rollup-btn')) {
       this.dispatch('open');
       return;
     }
 
-    if(event.target.closest('.event__favorite-btn')){
+    if (event.target.closest('.event__favorite-btn')) {
       this.dispatch('favorite');
     }
   }

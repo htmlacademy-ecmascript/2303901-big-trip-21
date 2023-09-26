@@ -1,10 +1,10 @@
 /**
  * @typedef {{
-*  filter?: FilterType
-*  sort?: SortType
-*  edit?: string
-* }} Params
-*/
+ *  filter?: FilterType
+ *  sort?: SortType
+ *  edit?: string
+ * }} Params
+ */
 class Navigation extends EventTarget {
   constructor() {
     super();
@@ -15,8 +15,8 @@ class Navigation extends EventTarget {
   }
 
   /**
-  * @param {Params} params
-  */
+   * @param {Params} params
+   */
   setParams(params) {
     const url = this.getUrl();
 
@@ -26,13 +26,13 @@ class Navigation extends EventTarget {
       url.searchParams.set(key, params[key]);
     });
 
-    window.history.pushState(null, '', url.href);
+    window.history.pushState(this.getParams(), '', url.href);
     this.dispatchEvent(new Event('change'));
   }
 
   /**
-  * @returns {Params}
-  */
+   * @returns {Params}
+   */
   getParams() {
     const url = this.getUrl();
 
@@ -40,8 +40,15 @@ class Navigation extends EventTarget {
   }
 
   /**
-  * @returns {URL}
-  */
+   * @returns {Params}
+   */
+  getPreviousParams() {
+    return window.history.state ?? {};
+  }
+
+  /**
+   * @returns {URL}
+   */
   getUrl() {
     return new URL(window.location.href);
   }
